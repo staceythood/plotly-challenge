@@ -13,7 +13,7 @@ function buildMetadata(sample) {
 
     // Use `Object.entries` to add each key and value pair to the panel
     Object.entries(metadata).forEach(([key, value]) => {
-      var cell = ul.append("li");
+      var cell = ul.append("li").classed("list-style-type:none");
       cell.text(`${key}: ${value}`);
     });
 
