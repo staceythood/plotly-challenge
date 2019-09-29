@@ -7,7 +7,7 @@ Used Plotly.js to build interactive charts for the Belly Button Diversity dashbo
   Used otu_ids as the labels for the pie chart.
   Used otu_labels as the hovertext for the chart.
   
-2. Created a Gauge chart that uses the metadata to display the waching frequency of each sample.
+2. Created a Gauge chart that uses the metadata to display the washing frequency of each sample.
 
 3. Displayed the sample metadata from the route /metadata/<sample>
 
