@@ -11,7 +11,7 @@ Created a Gauge chart that uses the metadata to display the waching frequency of
 
 Displayed the sample metadata from the route /metadata/<sample>
 
-![Image of Dashboard](Screen Shot 2019-09-28 at 10.05.59 PM.png)
+![Image of Dashboard](staceythood/plotly-challenge/Screen Shot 2019-09-28 at 10.05.59 PM.png)
 
 Created a Bubble Chart that uses data from the samples route (/samples/<sample>) to display each sample.
 Used otu_ids for the x values.
