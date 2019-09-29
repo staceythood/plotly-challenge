@@ -13,14 +13,9 @@ function buildMetadata(sample) {
 
     // Use `Object.entries` to add each key and value pair to the panel
     Object.entries(metadata).forEach(([key, value]) => {
-      var cell = ul.append("li").classed("list-style-type:none");
+      var cell = ul.append("li");
       cell.text(`${key}: ${value}`);
     });
-
-    // panel.on("#sample-metadata", function() {
-    //   var newEntry = d3.event.target.value;
-    //   console.log(newEntry);
-    // });
   });
 
   // BONUS: Build the Gauge Chart
@@ -29,53 +24,36 @@ function buildMetadata(sample) {
     console.log(response);
     let metagauge = response;
 
-    var datagauge = [
-      {
-        domain: { x: [0, 1], y: [0, 1] },
-        value: sample.WFREQ,
-        title: { text: "Belly Button Washes per Week" },
-        type: "indicator",
-        mode: "gauge+number",
-        autosize: true,
-        gauge: {
-          axis: { range: [0, 10] },
-          steps: [
-            { range: [0, 2], color: "#ffe6f2" },
-            { range: [2, 4], color: "#ffcce6" },
-            { range: [4, 6], color: "#ffb3d9" },
-            { range: [6, 8], color: "#ff99cc" },
-            { range: [8, 10], color: "#ff80bf" }
-          ]
-        }
+    let trace3 = {
+      domain: { x: [0, 1], y: [0, 1] },
+      value: metagauge.WFREQ,
+      title: { text: "Belly Button Washes per Week" },
+      type: "indicator",
+      mode: "gauge+number",
+      autosize: true,
+      gauge: {
+        axis: { range: [0, 9] },
+        steps: [
+          { range: [0, 1], color: "#ffe6f2" },
+          { range: [1, 2], color: "#ffcce6" },
+          { range: [2, 3], color: "#ffb3d9" },
+          { range: [3, 4], color: "#ff99cc" },
+          { range: [4, 5], color: "#ff80bf" },
+          { range: [5, 6], color: "#ff66b3" },
+          { range: [6, 7], color: "#ff4da6" },
+          { range: [7, 8], color: "#ff3399" },
+          { range: [8, 9], color: "#ff1a8c" }
+        ],
+        bar: { color: "#660066" }
       }
-    ];
-
+    };
+    var data3 = [trace3];
     var layout3 = { width: 600, height: 450, margin: { t: 0, b: 0 } };
 
-    Plotly.newPlot("gauge", datagauge, layout3);
+    Plotly.newPlot("gauge", data3, layout3);
   });
 }
-let gaugeChart = [
-  {
-    domain: { x: [0, 1], y: [0, 1] },
-    value: sample.WFREQ,
-    title: { text: "Belly Button Washes per Week" },
-    type: "indicator",
-    mode: "gauge+number",
-    autosize: true,
-    gauge: {
-      axis: { range: [0, 10] },
-      steps: [
-        { range: [0, 2], color: "#fff2cc" },
-        { range: [2, 4], color: "#ffdf80" },
-        { range: [4, 6], color: "#ffcc33" },
-        { range: [6, 8], color: "#e6ac00" },
-        { range: [8, 10], color: "#997300" }
-      ],
-      bar: { color: "#88cc00" }
-    }
-  }
-];
+
 function buildCharts(sample) {
   // @TODO: Use `d3.json` to fetch the sample data for the plots
   url2 = `/samples/${sample}`;
@@ -154,7 +132,6 @@ function init() {
     const firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
-    buildGauge(firstSample);
   });
 }
 
@@ -162,7 +139,6 @@ function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildCharts(newSample);
   buildMetadata(newSample);
-  buildGauge(firstSample);
 }
 
 // Initialize the dashboard
